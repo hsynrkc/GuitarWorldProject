@@ -1,0 +1,119 @@
+@import "variables";
+.nav {
+  position: fixed;
+  right: 8rem;
+  top: 8rem;
+  height: 3rem;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover .nav_icon {
+    &,
+    &::before,
+    &::after {
+      background-color: $color-white;
+    }
+
+    &::before {
+      top: -1.2rem;
+    }
+    &::after {
+      top: 1.2rem;
+    }
+  }
+
+  &_icon {
+    position: relative;
+    top: 1rem;
+    z-index: 2;
+
+    &,
+    &::before,
+    &::after {
+      background-color: $color-white-transparent;
+      width: 4rem;
+      height: 0.5rem;
+      display: block;
+      transition: all 0.2s;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+    &::before {
+      top: -1rem;
+    }
+    &::after {
+      top: 1rem;
+    }
+  }
+  &_checkbox-label {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  &_checkbox {
+    display: none;
+  }
+  &_checkbox:checked + &_checkbox-label &_icon {
+    background-color: transparent;
+  }
+  &_checkbox:checked + &_checkbox-label &_icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+  &_checkbox:checked + &_checkbox-label &_icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+
+  // Menu
+  &_checkbox:checked ~ .nav_background {
+    transform: translateY(0);
+  }
+  &_background {
+    width: 100vw;
+    height: 100vh;
+    background-color: $color-primary;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    transform: translateY(-100vh);
+    transition: all 0.5s cubic-bezier(0.19, 1.02, 0.96, 0.86);
+  }
+  &_menu {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    color: $color-white-transparent;
+
+    &-list {
+      list-style: none;
+      text-align: center;
+      line-height: 7rem;
+    }
+    &-link {
+      text-decoration: none;
+      display: block;
+      min-width: 25rem;
+      cursor: pointer;
+      color: $color-white;
+      border-radius: $button-border-radius;
+      transition: all 0.2s;
+
+      &:hover {
+        color: $color-primary;
+        background-color: $color-white;
+      }
+    }
+  }
+}
